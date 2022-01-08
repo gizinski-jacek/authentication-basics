@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -7,9 +8,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcryptjs = require('bcryptjs');
 
-const mongoDb =
-	'mongodb+srv://MAIN:GcNrNANs3X5Nbr3@cluster0.rkvi8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
+const mongoDB = process.env.MONGODB_URI;
+mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
 
